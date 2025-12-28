@@ -65,7 +65,6 @@ def main():
             new_blue = new_blue % 255
 
         import cv2
-        import platform
         import numpy as np
         import matplotlib.pyplot as plt
 
@@ -95,9 +94,6 @@ def main():
             plt.axis("off")
             if title_2:
                 plt.title(title_2)
-            if platform.system() == "Windows":
-                figmanager = plt.get_current_fig_manager()
-                figmanager.window.state("zoomed")
             plt.show()
 
         def get_image(path: str) -> np.ndarray:
@@ -112,9 +108,6 @@ def main():
         plt.imshow(image, cmap="gnuplot2")
         plt.axis("off")
         plt.title("Click anywhere on the image")
-        if platform.system() == "Windows":
-            figmanager = plt.get_current_fig_manager()
-            figmanager.window.state("zoomed")
         plt.show()
 
         new_image = image.copy()
@@ -126,7 +119,7 @@ def main():
             cv2.imwrite(
                 os.path.join(
                     OUTPUT_PATH,
-                    filename.split(".")[0] + f"_R{new_red}G{new_green}B{new_blue}.png",
+                    filename.split(".")[0] + f"_R{new_red}_G{new_green}_B{new_blue}.png",
                 ),
                 cv2.cvtColor(src=new_image, code=cv2.COLOR_RGB2BGR),
             )
@@ -134,7 +127,7 @@ def main():
             show_images(image, new_image)
 
     else:
-        print("\n" + 50*"*" + "\n")
+        print("\n" + 50 * "*" + "\n")
         print("Color Replacer CLI App".upper())
         print("\nCLI Arguments:")
         print(" 1. --filename  | -f  - Image Filename (DEFAULT: Test_1.jpg)")
@@ -146,13 +139,15 @@ def main():
         print("\nExample Usage:")
         print(" Python Script")
         print("     1. python main.py")
-        print("     2. python main.py --filename Test_1.jpg --new-red 255 --new-green 127")
+        print(
+            "     2. python main.py --filename Test_1.jpg --new-red 255 --new-green 127"
+        )
         print("     3. python main.py -f Test_1.jpg -nr 127 -ng 127 -nb 127 -s")
         print(" Executable")
         print("     1. crpl")
         print("     2. crpl --filename Test_1.jpg --new-red 255 --new-green 127")
         print("     3. crpl -f Test_1.jpg -nr 127 -ng 127 -nb 127 -s")
-        print("\n" + 50*"*" + "\n")
+        print("\n" + 50 * "*" + "\n")
 
 
 if __name__ == "__main__":

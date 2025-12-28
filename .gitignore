@@ -13,15 +13,8 @@ build
 *.bin
 *.xml
 
-venv38
-venv39
-venv310
-venv311
-
-wslvenv38
-wslvenv39
-wslvenv310
-wslvenv311
+venv
+wslvenv
 
 .env
 .vscode
